@@ -22,7 +22,7 @@ class ThreadsTest extends TestCase
         // $response = $this->get('/threads');
         // $response->assertSee($thread->title);
 
-        $this->get('/threads')->assertSee($thread->title);
+        $this->get($thread->path())->assertSee($thread->title);
 
         // $response->assertStatus(200);
     }
@@ -34,7 +34,7 @@ class ThreadsTest extends TestCase
         // $response = $this->get('threads/' . $thread->id);
         // $response->assertSee($thread->title);
 
-        $this->get('threads/' . $thread->id)->assertSee($thread->title);
+        $this->get($thread->path())->assertSee($thread->title);
     }
 
     public function testUserCanReadRepliesThatAreAssociatedWithAThread()
@@ -42,6 +42,6 @@ class ThreadsTest extends TestCase
         $thread = factory('App\Thread')->create();
 
         $reply = factory('App\Reply')->create(['thread_id' => $thread->id]);
-        $response = $this->get('threads/' . $thread->id)->assertSee($reply->body);
+        $response = $this->get($thread->path())->assertSee($reply->body);
     }
 }
