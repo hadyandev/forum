@@ -11,7 +11,7 @@ class Thread extends Model
     protected $guarded = [];
     public function path()
     {
-        return "threads/" . $this->id;
+        return "/threads/" . $this->id;
     }
 
     public function replies()
