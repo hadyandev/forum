@@ -14,11 +14,17 @@ class CreateThreadsTest extends TestCase
      * @return void
      */
 
-    public function testGuestMayNotCreateThreads()
+    public function testGuestsMayNotCreateThreads()
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
         $thread = make('App\Thread');
         $this->post('/threads', $thread->toArray());
+    }
+
+    public function testGuestsCannotSeeTheCreateThreadPage()
+    {
+        // defaultnya adalah tanpa exception handling. settingnya ada di test case
+        $this->withExceptionHandling()->get('/threads/create')->assertRedirect('/login');
     }
 
     public function testAnAuthenticatedUserCanCreateNewForumThreads()
