@@ -16,19 +16,19 @@ class ThreadTest extends TestCase
 
     public function testAthreadHasReplies()
     {
-        $thread = factory('App\Thread')->create();
+        $thread = create('App\Thread');
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $thread->replies);
     }
 
     public function testAThreadHasACreator()
     {
-        $thread = factory('App\Thread')->create();
+        $thread = create('App\Thread');
         $this->assertInstanceOf('App\User', $thread->creator);
     }
 
     public function testAThreadCanAddAReply()
     {
-        $thread = factory('App\Thread')->create();
+        $thread = create('App\Thread');
         $thread->addReply([
             'body' => 'Foobar',
             'user_id' => 1,
