@@ -14,7 +14,8 @@
                             <label for="channel_id">Choose a Channel</label>
                             <select name="channel_id" id="channel_id" class="custom-select" required>
                                 <option value="">Choose One...</option>
-                                @foreach (App\Channel::all() as $channel)
+                                {{-- $channels tidak disetting di controller. terus darimana? yaa.. disetting di AppServiceProvider/php --}}
+                                @foreach ($channels as $channel)
                                     <option value="{{ $channel->id }}" {{ old('channel_id') == $channel->id ? 'selected' : ''}}>
                                         {{ $channel->name }}
                                     </option>
